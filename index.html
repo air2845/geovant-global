@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geovant Global — Location Intelligence for Emerging Markets</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#0f5132;--green2:#166534;--green3:#16a34a;--green-light:#f0fdf4;--ink:#0d1117;--ink2:#374151;--ink3:#6b7280;--border:#e5e7eb;--bg:#ffffff;--bg2:#f9fafb}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#0d1117;font-weight:300;line-height:1.7;font-size:16px}
+.container{max-width:1080px;margin:0 auto;padding:0 32px}
+nav{position:sticky;top:0;background:rgba(255,255,255,0.95);border-bottom:1px solid #e5e7eb;z-index:100}
+.nav-inner{max-width:1080px;margin:0 auto;padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo-mark{width:34px;height:34px;background:#0f5132;border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-family:'Syne',sans-serif;font-weight:800;font-size:16px}
+.nav-logo-text{font-family:'Syne',sans-serif;font-weight:700;font-size:17px;color:#0d1117}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{text-decoration:none;color:#6b7280;font-size:14px}
+.nav-links a:hover{color:#0d1117}
+.nav-cta{background:#0f5132!important;color:white!important;padding:8px 18px;border-radius:100px;font-weight:500!important}
+.hero{padding:96px 0 80px;border-bottom:1px solid #e5e7eb}
+.eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#16a34a;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:'';display:block;width:20px;height:1px;background:#16a34a}
+h1{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,58px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;color:#0d1117;max-width:760px;margin-bottom:24px}
+h1 em{font-style:normal;color:#0f5132}
+.hero-sub{font-size:18px;color:#6b7280;max-width:560px;line-height:1.6;margin-bottom:40px;font-weight:300}
+.hero-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:#0f5132;color:white;padding:13px 24px;border-radius:100px;font-size:14px;font-weight:500;text-decoration:none}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:#374151;padding:13px 24px;border-radius:100px;font-size:14px;text-decoration:none;border:1px solid #e5e7eb}
+.hero-stats{display:flex;gap:48px;margin-top:64px;padding-top:40px;border-top:1px solid #e5e7eb;flex-wrap:wrap}
+.stat-num{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:#0d1117;letter-spacing:-1px;line-height:1;margin-bottom:4px}
+.stat-num span{color:#0f5132}
+.stat-label{font-size:13px;color:#6b7280;font-weight:300}
+section{padding:80px 0;border-bottom:1px solid #e5e7eb}
+.sec-label{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#6b7280;margin-bottom:12px}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-.8px;color:#0d1117;line-height:1.15;margin-bottom:16px}
+.sec-sub{font-size:16px;color:#6b7280;max-width:520px;line-height:1.6;font-weight:300}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.card{background:#f9fafb;border:1px solid #e5e7eb;border-radius:16px;padding:32px}
+.card.featured{background:#0f5132;border-color:#0f5132;grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.card-tag{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#6b7280;margin-bottom:12px}
+.featured .card-tag{color:rgba(255,255,255,0.6)}
+.card-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:#0d1117;margin-bottom:8px}
+.featured .card-name{color:white;font-size:28px}
+.card-desc{font-size:14px;color:#6b7280;line-height:1.6;margin-bottom:20px;font-weight:300}
+.featured .card-desc{color:rgba(255,255,255,0.75)}
+.card-link{font-size:13px;font-weight:500;color:#166534;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.featured .card-link{color:white;background:rgba(255,255,255,0.15);padding:8px 16px;border-radius:100px}
+.pstats{display:flex;flex-direction:column;gap:16px}
+.pstat{display:flex;align-items:baseline;gap:12px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.15)}
+.pstat:last-child{border-bottom:none;padding-bottom:0}
+.pstat-n{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:white;letter-spacing:-.5px;line-height:1}
+.pstat-l{font-size:13px;color:rgba(255,255,255,0.65);font-weight:300}
+.b2b-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e5e7eb;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;margin-top:48px}
+.b2b-item{background:#fff;padding:32px 28px}
+.b2b-icon{width:40px;height:40px;background:#f0fdf4;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:18px}
+.b2b-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px}
+.b2b-desc{font-size:13px;color:#6b7280;line-height:1.6;margin-bottom:16px;font-weight:300}
+.b2b-price{font-family:'DM Mono',monospace;font-size:12px;color:#166534;background:#f0fdf4;padding:4px 10px;border-radius:100px;display:inline-block}
+.clients-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.client-card{padding:24px 20px;border:1px solid #e5e7eb;border-radius:12px}
+.client-icon{font-size:24px;margin-bottom:12px}
+.client-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#0d1117;margin-bottom:6px}
+.client-desc{font-size:12px;color:#6b7280;line-height:1.5;font-weight:300}
+.process{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:56px;position:relative}
+.process::before{content:'';position:absolute;top:20px;left:calc(33.33% - 20px);right:calc(33.33% - 20px);height:1px;background:#e5e7eb}
+.step-num{width:40px;height:40px;border-radius:50%;background:#0f5132;color:white;font-family:'Syne',sans-serif;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative;z-index:1}
+.step-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:#0d1117;margin-bottom:8px}
+.step-desc{font-size:14px;color:#6b7280;line-height:1.6;font-weight:300}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e5e7eb;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;margin-top:48px}
+.exp-item{background:#fff;padding:28px}
+.exp-item.active{background:#f0fdf4}
+.exp-status{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.exp-dot{width:6px;height:6px;border-radius:50%}
+.exp-market{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#0d1117;margin-bottom:4px}
+.exp-region{font-size:13px;color:#6b7280;margin-bottom:12px;font-weight:300}
+.exp-target{font-size:12px;color:#6b7280;font-weight:300}
+.exp-target strong{color:#0d1117;font-weight:500}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:48px;align-items:start}
+.contact-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:#0d1117;margin-bottom:4px}
+.contact-title{font-size:14px;color:#6b7280;margin-bottom:24px;font-weight:300}
+.contact-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #e5e7eb;font-size:14px}
+.contact-row:last-child{border-bottom:none}
+.contact-lbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6b7280;width:80px;flex-shrink:0}
+.contact-val{color:#374151}
+.contact-val a{color:#166534;text-decoration:none}
+.form-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:#0d1117;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-lbl{display:block;font-size:12px;font-weight:500;color:#374151;margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:.05em;text-transform:uppercase}
+.form-input{width:100%;padding:11px 14px;border:1px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:'DM Sans',sans-serif;color:#0d1117;background:#fff;outline:none}
+.form-input:focus{border-color:#16a34a}
+textarea.form-input{height:100px;resize:none}
+.form-submit{width:100%;padding:13px;background:#0f5132;color:white;border:none;border-radius:100px;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer}
+footer{padding:40px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-brand{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#0d1117}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:13px;color:#6b7280;text-decoration:none}
+.footer-meta{font-family:'DM Mono',monospace;font-size:11px;color:#6b7280}
+@media(max-width:768px){.container{padding:0 20px}.product-grid{grid-template-columns:1fr}.card.featured{grid-column:span 1;grid-template-columns:1fr}.b2b-grid{grid-template-columns:1fr}.clients-grid{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr}.process::before{display:none}.exp-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr;gap:40px}.nav-links{display:none}}
+</style>
+</head>
+<body>
+<nav>
+<div class="nav-inner">
+<a href="#" class="nav-logo">
+<div class="nav-logo-mark">G</div>
+<div class="nav-logo-text">Geovant Global <span style="color:#6b7280;font-weight:400;font-size:12px;display:block;margin-top:-4px">LLC · Wyoming</span></div>
+</a>
+<div class="nav-links">
+<a href="#products">Products</a>
+<a href="#b2b">For Business</a>
+<a href="#expansion">Expansion</a>
+<a href="#contact">Contact</a>
+<a href="https://mapafrique.app" class="nav-cta">Open MapAfrique →</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<div class="eyebrow">Location intelligence · Emerging markets</div>
+<h1>Building the data layer for <em>West Africa</em></h1>
+<p class="hero-sub">Geovant Global deploys ground-truth location data infrastructure in markets where it doesn't exist. Starting with Liberia.</p>
+<div class="hero-actions">
+<a href="https://api.mapafrique.app/v1/ping" class="btn-primary">Explore the API →</a>
+<a href="#contact" class="btn-ghost">Talk to us</a>
+</div>
+<div class="hero-stats">
+<div><div class="stat-num">721<span>+</span></div><div class="stat-label">Verified locations · Liberia</div></div>
+<div><div class="stat-num">100<span>%</span></div><div class="stat-label">Human verified · Ground truth</div></div>
+<div><div class="stat-num">3</div><div class="stat-label">Live products deployed</div></div>
+<div><div class="stat-num">22<span>+</span></div><div class="stat-label">Active field ambassadors</div></div>
+</div>
+</div>
+</section>
+
+<section id="products">
+<div class="container">
+<div class="sec-label">What we build</div>
+<h2 class="sec-title">Location infrastructure<br>for informal economies</h2>
+<p class="sec-sub">Pharmacies, clinics, markets, schools, fuel stations — verified on the ground, accessible via API.</p>
+<div class="product-grid">
+<div class="card featured">
+<div>
+<div class="card-tag">Flagship product · Live in Liberia</div>
+<div class="card-name">MapAfrique</div>
+<div class="card-desc">The first verified location database for West Africa. Built by local ambassadors, reviewed by humans, accessible via REST API. 721+ verified locations growing daily across Monrovia.</div>
+<a href="https://mapafrique.app" class="card-link">Open platform →</a>
+</div>
+<div class="pstats">
+<div class="pstat"><div class="pstat-n">721+</div><div class="pstat-l">Verified locations in Monrovia</div></div>
+<div class="pstat"><div class="pstat-n">16</div><div class="pstat-l">Location categories</div></div>
+<div class="pstat"><div class="pstat-n">100%</div><div class="pstat-l">GPS verified · Photo confirmed</div></div>
+</div>
+</div>
+<div class="card">
+<div class="card-tag">Developer</div>
+<div class="card-name">Location API</div>
+<div class="card-desc">REST API serving verified locations with GPS coordinates, photos, landmark directions, and category metadata. JSON and GeoJSON output.</div>
+<a href="https://mapafrique.app/api-explorer.html" class="card-link">API Explorer →</a>
+</div>
+<div class="card">
+<div class="card-tag">Enterprise</div>
+<div class="card-name">Custom Collection</div>
+<div class="card-desc">Deploy our ambassador network to collect specific categories, areas, or data fields to your specification. Delivered in 2–4 weeks.</div>
+<a href="#contact" class="card-link">Request a quote →</a>
+</div>
+</div>
+</div>
+</section>
+
+<section id="b2b">
+<div class="container">
+<div class="sec-label">For business</div>
+<h2 class="sec-title">Three ways to access<br>MapAfrique data</h2>
+<p class="sec-sub">Built for NGOs, telecoms, logistics companies, and government agencies operating in West Africa.</p>
+<div class="b2b-grid">
+<div class="b2b-item">
+<div class="b2b-icon">⚡</div>
+<div class="b2b-name">Location Intelligence API</div>
+<div class="b2b-desc">Live API access to the full verified location database. Filter by category, city, or radius. JSON and GeoJSON. Ideal for apps, dashboards, and logistics platforms.</div>
+<div class="b2b-price">$300–$5,000 / month</div>
+</div>
+<div class="b2b-item">
+<div class="b2b-icon">🗂️</div>
+<div class="b2b-name">Custom Data Collection</div>
+<div class="b2b-desc">Scope a collection project to your specific categories, geographic areas, and data requirements. Delivered as CSV, GeoJSON, or Shapefile within 2–4 weeks.</div>
+<div class="b2b-price">$500–$3,000 / project</div>
+</div>
+<div class="b2b-item">
+<div class="b2b-icon">✓</div>
+<div class="b2b-name">Verification Service</div>
+<div class="b2b-desc">Submit your existing location database for ground-truth verification by our ambassador network. GPS confirmation, photo, and landmark directions added per location.</div>
+<div class="b2b-price">$0.10–$0.40 / location</div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="sec-label">Who we serve</div>
+<h2 class="sec-title">Built for organizations<br>operating on the ground</h2>
+<div class="clients-grid">
+<div class="client-card"><div class="client-icon">🏥</div><div class="client-name">NGOs & UN Agencies</div><div class="client-desc">Health facility mapping, service delivery planning, field operations routing. UNICEF, WHO, IRC, MSF.</div></div>
+<div class="client-card"><div class="client-icon">📡</div><div class="client-name">Telecoms</div><div class="client-desc">Network planning, agent location mapping, subscriber-facing discovery services. Orange, MTN, Lonestar.</div></div>
+<div class="client-card"><div class="client-icon">🏛️</div><div class="client-name">Government</div><div class="client-desc">National health information systems, public service mapping, infrastructure planning.</div></div>
+<div class="client-card"><div class="client-icon">🚚</div><div class="client-name">Logistics & Fintech</div><div class="client-desc">Last-mile delivery routing, mobile money agent mapping, field operations. Real-time API access.</div></div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="sec-label">How it works</div>
+<h2 class="sec-title">Ground truth data,<br>not scraped data</h2>
+<p class="sec-sub">Every location in our database was physically visited, photographed, and reviewed by a human before publication.</p>
+<div class="process">
+<div><div class="step-num">1</div><div class="step-title">Collect</div><div class="step-desc">Local ambassadors physically visit each location. GPS is captured on-site. A photo of the entrance is required. Details are recorded in our scout app.</div></div>
+<div><div class="step-num">2</div><div class="step-title">Review</div><div class="step-desc">Every submission is reviewed by a human administrator before approval. Only verified data is published.</div></div>
+<div><div class="step-num">3</div><div class="step-title">Deliver</div><div class="step-desc">Verified locations are immediately available via REST API. CSV and GeoJSON exports available on demand.</div></div>
+</div>
+</div>
+</section>
+
+<section id="expansion">
+<div class="container">
+<div class="sec-label">Expansion roadmap</div>
+<h2 class="sec-title">West Africa first.<br>Then the world.</h2>
+<p class="sec-sub">MapAfrique is the first product in a global location infrastructure platform targeting informal markets across three continents.</p>
+<div class="exp-grid">
+<div class="exp-item active">
+<div class="exp-status"><div class="exp-dot" style="background:#16a34a"></div><span style="color:#16a34a;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase">Live · Private beta</span></div>
+<div class="exp-market">MapAfrique</div>
+<div class="exp-region">Liberia · West Africa</div>
+<div class="exp-target"><strong>721+</strong> verified locations · Target: 5,000</div>
+</div>
+<div class="exp-item">
+<div class="exp-status"><div class="exp-dot" style="background:#d97706"></div><span style="color:#d97706;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase">2027 · Planned</span></div>
+<div class="exp-market">MapAfrique</div>
+<div class="exp-region">Ghana · Sierra Leone · Nigeria</div>
+<div class="exp-target">Target: <strong>50,000</strong> verified locations</div>
+</div>
+<div class="exp-item">
+<div class="exp-status"><div class="exp-dot" style="background:#6b7280"></div><span style="color:#6b7280;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase">2028 · Pipeline</span></div>
+<div class="exp-market">MapOrient · MapLatam</div>
+<div class="exp-region">SE Asia · Latin America</div>
+<div class="exp-target">Target: <strong>200,000+</strong> verified locations</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<div class="sec-label">Get in touch</div>
+<h2 class="sec-title">Ready to work together?</h2>
+<p class="sec-sub">Whether you need a pilot dataset, API access, or a custom collection project — let's talk.</p>
+<div class="contact-grid">
+<div>
+<div class="contact-name">Alexander Russell</div>
+<div class="contact-title">Founder & CEO · Geovant Global LLC</div>
+<div class="contact-row"><div class="contact-lbl">Email</div><div class="contact-val"><a href="mailto:data@mapafrique.app">data@mapafrique.app</a></div></div>
+<div class="contact-row"><div class="contact-lbl">Platform</div><div class="contact-val"><a href="https://mapafrique.app">mapafrique.app</a></div></div>
+<div class="contact-row"><div class="contact-lbl">API</div><div class="contact-val"><a href="https://api.mapafrique.app/v1/ping">api.mapafrique.app</a></div></div>
+<div class="contact-row"><div class="contact-lbl">Company</div><div class="contact-val">Geovant Global LLC · Wyoming, USA</div></div>
+<div class="contact-row"><div class="contact-lbl">Operations</div><div class="contact-val">Monrovia, Liberia · West Africa</div></div>
+</div>
+<div>
+<div class="form-title">Send us a message</div>
+<div class="form-group"><label class="form-lbl">Name</label><input type="text" class="form-input" placeholder="Your name"></div>
+<div class="form-group"><label class="form-lbl">Organization</label><input type="text" class="form-input" placeholder="UNICEF, Orange, Ministry of Health..."></div>
+<div class="form-group"><label class="form-lbl">Email</label><input type="email" class="form-input" placeholder="your@organization.org"></div>
+<div class="form-group"><label class="form-lbl">What do you need?</label><textarea class="form-input" placeholder="Pilot dataset, API access, custom collection project..."></textarea></div>
+<button class="form-submit" onclick="alert('Thank you — we will be in touch within 24 hours.')">Send message →</button>
+</div>
+</div>
+</div>
+</section>
+
+<div class="container">
+<footer>
+<div class="footer-brand">Geovant Global LLC</div>
+<div class="footer-links">
+<a href="https://mapafrique.app">MapAfrique</a>
+<a href="https://api.mapafrique.app/v1/ping">API</a>
+<a href="https://mapafrique.app/api-explorer.html">Explorer</a>
+<a href="mailto:data@mapafrique.app">Contact</a>
+</div>
+<div class="footer-meta">© 2026 Geovant Global LLC · Wyoming, USA</div>
+</footer>
+</div>
+</body>
+</html>
